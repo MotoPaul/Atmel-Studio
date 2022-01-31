@@ -28,7 +28,7 @@ drivers:
     configuration:
       $input: 32768
       RESERVED_InputFreq: 32768
-      _$freq_output_Async input clock: '32768'
+      _$freq_output_Async input clock: 32768
       _$freq_output_Input clock: 8000000
       async_input_speed: 32768
       clkadc_oscillator: Input clock
@@ -63,6 +63,12 @@ drivers:
           external_frequency: 0
         configuration: {}
 pads:
+  Button:
+    name: PB7
+    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-MU::pad::PB7
+    mode: Digital input
+    user_label: Button
+    configuration: null
   MyGpio:
     name: PD7
     definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-MU::pad::PD7
@@ -78,14 +84,14 @@ toolchain_options:
     linker_config:
       xc8_linker_miscellaneous_LinkerFlags: ''
 - definition:
-    identifier: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-MU::environment_definition::All:Atmel.Studio:7.0.0
+    identifier: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-MU::environment_definition::All:Microchip.Studio.gcc:7.0.0
   configuration:
     compiler_config:
       avrgcc_compiler_miscellaneous_OtherFlags: -std=gnu99
     linker_config:
       avrgcc_linker_miscellaneous_LinkerFlags: ''
 - definition:
-    identifier: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-MU::environment_definition::All:Microchip.Studio.gcc:7.0.0
+    identifier: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-MU::environment_definition::All:Atmel.Studio:7.0.0
   configuration:
     compiler_config:
       avrgcc_compiler_miscellaneous_OtherFlags: -std=gnu99

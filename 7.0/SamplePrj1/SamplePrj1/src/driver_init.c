@@ -43,6 +43,18 @@ void system_init()
 {
 	mcu_init();
 
+	/* PORT setting on PB7 */
+
+	// Set pin direction to input
+	Button_set_dir(PORT_DIR_IN);
+
+	Button_set_pull_mode(
+	    // <y> Pull configuration
+	    // <id> pad_pull_config
+	    // <PORT_PULL_OFF"> Off
+	    // <PORT_PULL_UP"> Pull-up
+	    PORT_PULL_OFF);
+
 	/* PORT setting on PD7 */
 
 	// Set pin direction to output

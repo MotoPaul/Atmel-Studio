@@ -59,10 +59,18 @@ int main(void)
 	/* Replace with your application code */
 	while(1)
 	{
+	  //Toggle Gpio via Delay()	
+	  /*
       MyGpio_set_level(true);
 	  Delay();
 	  MyGpio_set_level(false);
 	  Delay();
+	  */
+	  
+	  //Toggle Gpio via user button trigger
+	  if( Button_get_level()==false )
+	     MyGpio_toggle_level();
+	    
 	}
 }
 
