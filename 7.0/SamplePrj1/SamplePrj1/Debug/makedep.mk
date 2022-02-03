@@ -8,6 +8,8 @@ driver_isr.c
 
 main.c
 
+src\delay.s
+
 src\driver_init.c
 
 src\protected_io.S

@@ -51,6 +51,7 @@ C_SRCS +=  \
 
 
 PREPROCESSING_SRCS +=  \
+../src/delay.s \
 ../src/protected_io.S
 
 
@@ -61,6 +62,7 @@ OBJS +=  \
 atmel_start.o \
 driver_isr.o \
 main.o \
+src/delay.o \
 src/driver_init.o \
 src/protected_io.o
 
@@ -68,6 +70,7 @@ OBJS_AS_ARGS +=  \
 atmel_start.o \
 driver_isr.o \
 main.o \
+src/delay.o \
 src/driver_init.o \
 src/protected_io.o
 
@@ -75,6 +78,7 @@ C_DEPS +=  \
 atmel_start.d \
 driver_isr.d \
 main.d \
+src/delay.d \
 src/driver_init.d \
 src/protected_io.d
 
@@ -82,6 +86,7 @@ C_DEPS_AS_ARGS +=  \
 atmel_start.d \
 driver_isr.d \
 main.d \
+src/delay.d \
 src/driver_init.d \
 src/protected_io.d
 
@@ -135,6 +140,13 @@ src/driver_init.o: ../src/driver_init.c
 
 
 # AVR32/GNU Assembler
+src/delay.o: ../src/delay.s
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU Assembler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE) -Wa,-gdwarf2 -x assembler-with-cpp -c -mmcu=atmega328pb -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega328pb" -I "../Config" -I "../include" -I "../utils" -I "../utils/assembler" -I ".." -I "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include"  -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)" -Wa,-g   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 src/protected_io.o: ../src/protected_io.S
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU Assembler : 5.4.0

@@ -17,15 +17,15 @@
 #define __DELAY_COUNT     (int)20000
 
 
-
-
+/******************************* Externals ***********************************/
+void Delay250mS(void);
 /************************** Variable Definitions *****************************/
 
 
 
 
 /*************************** Function Prototypes *****************************/
-void Delay(void);
+void C_Delay(void);
 
 
 
@@ -53,19 +53,28 @@ int main(void)
 {   
 	
 	/* Initializes MCU, drivers and middleware */
-	Delay();
+	C_Delay();
 	atmel_start_init();
-    Delay();
+    C_Delay();
 	/* Replace with your application code */
 	while(1)
 	{
-	  //Toggle Gpio via Delay()	
+	  //Toggle Gpio via C code Delay()	
 	  /*
       MyGpio_set_level(true);
-	  Delay();
+	  C_Delay();
 	  MyGpio_set_level(false);
-	  Delay();
+	  C_Delay();
 	  */
+	  
+	  
+	  //Toggle Gpio via ASM code One_mS_Delay()	
+	  MyGpio_set_level(true);
+	  Delay250mS();
+	  MyGpio_set_level(false);
+	  Delay250mS();
+	    
+	
 	  
 	  //Toggle Gpio via user button trigger
 	  if( Button_get_level()==false )
@@ -90,9 +99,10 @@ int main(void)
 * @note
 *
 ****************************************************************************/
-void Delay(void)
+void C_Delay(void)
 {
    volatile int i;
+   
    for(int i=0;i<__DELAY_COUNT;++i)
       ;
 }
